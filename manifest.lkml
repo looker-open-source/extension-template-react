@@ -1,6 +1,4 @@
-name: "extension-template"
-
 application: extension-template {
   label: "Extension Template"
-  file: "dist/index.js"
+  uri: "https://localhost:8080/bundle.js"
 }

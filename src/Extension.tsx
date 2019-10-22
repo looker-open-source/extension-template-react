@@ -1,10 +1,10 @@
 import * as React from "react"
+import Button from "@material-ui/core/Button"
 
 let lang: string = "TypeScript"
 
 export default () => (
-  <>
-    <h1>Sample Extension</h1>
-    <p>This is a sample extension written in {lang}.</p>
-  </>
+  <Button variant="contained" color="primary">
+    Sample {lang} Extension Here
+  </Button>
 )
