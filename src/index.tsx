@@ -1,36 +1,16 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
-import { Extension } from "./Extension"
-import { injectGlobal } from "styled-components"
-import { LookerExtensionSDK, connectExtensionHost } from "bryns-extension-api"
+import { Extension } from "./demo/Extension"
 import { ExtensionWrapper } from "./framework/ExtensionWrapper"
-
-var link = document.createElement("link")
-link.href = "https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-link.rel = "stylesheet"
-document.head.appendChild(link)
-injectGlobal`
-    body,
-    button,
-    input,
-    textarea,
-    select {
-      font-family: 'Open Sans', sans-serif;
-    }
-    body {
-      padding: 0;
-      margin: 0;
-    }
-`
 
 window.addEventListener("DOMContentLoaded", async event => {
   var root = document.createElement("div")
   document.body.appendChild(root)
   
-  let lang: string = "TypeScript"
   ReactDOM.render(
+    // ExtensionWrapper provides subcomponents access to the Looker Extension SDK
     <ExtensionWrapper>
-      <Extension lang={lang}/>
+      <Extension/>
     </ExtensionWrapper>,
     root
   )
