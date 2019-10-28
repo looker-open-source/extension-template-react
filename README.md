@@ -2,7 +2,7 @@
 
 This repo serves as a template for developing Looker Extensions.
 
-# (not so) Quick Start
+# Quick Start
 
 1. Fork this repo
 2. Clone a copy to your dev machine
