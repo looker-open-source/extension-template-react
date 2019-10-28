@@ -19,7 +19,7 @@ Great! Your extension is now running, but you can’t see it at the URL provided
 You will have to do this everytime you start up again with `yarn start`
 
 
-5. Now login to looker and create a new project.
+5. Now login to looker and create a new __Blank Project__.
 6. Navigate to the IDE in Looker.
 7. In your fork of `extension_template` you have `manifest.lkml` file. You can either drag & upload this file into your Looker project, or create a `manifest.lkml` with the same content. Change the `id`, `label`, or `url` as needed.
  
