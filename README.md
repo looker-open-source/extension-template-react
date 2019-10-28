@@ -15,7 +15,8 @@ This repo serves as a template for developing Looker Extensions.
 
 Great! Your extension is now running, but you can’t see it at the URL provided.
 (default: `https://localhost:8080`)
-
+4.5 If you go to the url you are running there may be a certificate warning. Go ahead and agree to that.
+You will have to do this everytime you start up again with `yarn start`
 
 
 5. Now login to looker and create a new project.
