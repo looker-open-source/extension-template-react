@@ -30,7 +30,7 @@ application: extension-template {
 }
 ```
 
-8. Create a `model` lookml file in your project. It is used for permissioning.
+8. Create a `model` lookml file in your project. Give it any name. It is only used for permissioning.
     - Add a connection in this model. The specific connection doesn't matter.
     - Configure the model you created. https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model
   
