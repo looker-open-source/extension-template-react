@@ -1,31 +1,61 @@
-# Extension Template (React / TypeScript)
+# Extension Template with React & Typescript
 
-This is a template for a React and TypeScript extension.
+This repo serves as a template for developing Looker Extensions.
 
-# Usage
+# Quick Start
 
-- Install dependencies with Yarn: `yarn install`
-- To run a development server: `yarn start`
-- To do a build: `yarn build` (You should commit the built file.)
+1. Fork this repo
+2. Clone a copy to your dev machine
+3. Navigate to the `Extension Template`'s directory on your system
+4. Enter the following commands
+    ```
+    yarn install
+    yarn start
+    ```
 
-# Extension Development Quickstart Guide
+Great! Your extension is now running, but you can’t see it at the URL provided.
+(default: `https://localhost:8080`)
 
+
+
+5. Now login to looker and create a new project.
+6. Navigate to the IDE in Looker.
+7. In your fork of `extension_template` you have `manifest.lkml` file. You can either drag & upload this file into your Looker project, or create a `manifest.lkml` with the same content. Change the `id`, `label`, or `url` as needed.
+ 
 ```
-yarn create-looker-extension <name>
-cd <name>
-yarn install
-yarn start
+application: extension-template {
+  label: "Extension Template"
+  url: "https://localhost:8080/bundle.js"
+}
 ```
 
-Your new looker extension app is running locally. Likely at `https://localhost:8080`.
+8. Create a `model` lookml file in your project. It is used for permissioning.
+    - Add a connection in this model. The specific connection doesn't matter.
+    - Configure the model you created. https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model
+  
+9. We suggest creating an empty git repository and linking it to this project. This will be useful for deploying later.
+    - Configure git from your Looker project to the new repository.
+    - https://docs.looker.com/data-modeling/getting-started/setting-up-git-connection
+    - #### Alternatively: You can configure a bare repository.
 
-Now navigate to the Looker Marketplace on your instance
+10. Commit and deploy your `model` and `manifest` to production.
+11. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list. (default: `Extension Template`)
+    - Live reloading is not supported
+    - BUT! While in `Developer Mode`, if you are using `url`, you can reload the page to see any changes you make to the underlying extension code.
 
-`<instance_url>.com/marketplace`
 
-Head to the `Plug-ins` category and Install the `Extension Quickstart` extension.
-It will ask you to specify a name for your `extension` as well as a user facing `Label` and optional `port`.
 
-Select the browse dropdown and your new extension will be listed!
+## More information
+ - code splitting is currently NOT supported
 
-Click on your extension to see it in action!
+
+### Alternative development strategy
+1. In your terminal you can build the extension with `yarn.build`.
+2. Drag and drop the generated `bundle.js` file into your project via Looker
+3. In your `manifest.lkml`, instead of `url`, use `file`.
+```
+application: extension-template {
+  label: "Extension Template"
+  file: "bundle.js"
+}
+```
