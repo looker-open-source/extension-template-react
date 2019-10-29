@@ -7,7 +7,7 @@ This repo serves as a template for developing Looker Extensions.
 1. Fork this repo
 2. Clone a copy to your dev machine
 3. Navigate to the `Extension Template`'s directory on your system
-4. Enter the following commands
+4. Enter the following commands (you may need to update your node version)
     ```
     yarn install
     yarn start
