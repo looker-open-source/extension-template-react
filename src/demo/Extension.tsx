@@ -65,6 +65,37 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
       this.runLook(id)
     }
   }
+  
+  /*
+  // TEMPLATE CODE FOR RUNNING ANY QUERY
+  async runQuery() {
+      try {
+      var result = await this.context.coreSDK.ok(
+        this.context.coreSDK.run_inline_query({
+          result_format: "json_detail",
+          limit: 10,
+          body: {
+            total: true,
+            model: "thelook",
+            view: "users",
+            fields: ["last_name", "gender"],
+            sorts: [`last_name desc`]
+          }
+        })
+      )
+      this.setState({
+        queryResult: JSON.stringify(result, undefined, 2),
+        runningQuery: false
+      })
+    } catch (error) {
+      this.setState({
+        queryResult: "",
+        runningQuery: false,
+        errorMessage: "Unable to run query"
+      })
+    }
+  
+  */
 
   async runLook(look_id: number) {
     const look = this.state.looks.find((l) => l.id == look_id)
