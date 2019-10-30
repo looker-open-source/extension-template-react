@@ -1,64 +1,78 @@
-# Extension Template with React & Typescript
+# Looker Extension Template (React & TypeScript)
 
-This repo serves as a template for developing Looker Extensions.
+This repository serves as a template for creating a new Looker Extension. 
 
-# Quick Start
+It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/) for writing your extension, the [React Extension SDK](https://github.com/looker-open-source/extension-sdk-react) for interacting with Looker, and [Webpack](https://webpack.js.org/) for building your code.
 
-1. Fork this repo
-2. Clone a copy to your dev machine
-3. Navigate to the `Extension Template`'s directory on your system
-4. Enter the following commands (you may need to update your node version)
+## Getting Started for Development
+
+1. Clone or download a copy of this template to your development machine
+2. Navigate (`cd`) to the remplate directory on your system
+3. Install the dependencies with [Yarn](https://yarnpkg.com/).
+
     ```
     yarn install
+    ```
+    
+    > You may need to update your Node version or use a [Node version manager](https://github.com/nvm-sh/nvm) to change your Node version.
+4.  Start the development server
+    ```
     yarn start
     ```
 
-Great! Your extension is now running, but you can’t see it at the URL provided.
-(default: `https://localhost:8080`)
+    Great! Your extension is now running and serving the JavaScript at https://localhost:8080/bundle.js.
 
+    > __Important:__ Visiting the bundle URL you are running there may be a certificate warning. The development server runs with a self-signed SSL certificate, so you will need to accept this to allow your browser to connect to it.
 
-__Important:__ If you go to the url you are running there may be a certificate warning. Go ahead and agree to that.
-You will have to do this everytime you start up again with `yarn start`
+5. Now log in to Looker and create a new project.
 
+   This is found under __Develop__ => __Manage LookML Projects__ => __New LookML Project__.
+   
+   You'll want to select "Blank Project" as your "Starting Point". You'll now have a new project with no files.
+6. In your copy of the extension tablet you have `manifest.lkml` file. 
 
-5. Now login to looker and create a new __Blank Project__.
-6. Navigate to the IDE in Looker.
-7. In your fork of `extension_template` you have `manifest.lkml` file. You can either drag & upload this file into your Looker project, or create a `manifest.lkml` with the same content. Change the `id`, `label`, or `url` as needed.
- 
-```
-application: extension-template {
-  label: "Extension Template"
-  url: "https://localhost:8080/bundle.js"
-}
-```
+    You can either drag & upload this file into your Looker project, or create a `manifest.lkml` with the same content. Change the `id`, `label`, or `url` as needed.
 
-8. Create a `model` lookml file in your project. Give it any name. It is only used for permissioning.
-    - Add a connection in this model. The specific connection doesn't matter.
-    - Configure the model you created. https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model
+    ```
+    application: my-great-extension {
+      label: "My Great Extension"
+      url: "https://localhost:8080/bundle.js"
+    }
+    ```
+
+8. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
+    - Add a connection in this model. It can be any connection, it doesn't matter which.
+    - [Configure the model you created](https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model) so that it has access to some connection. 
   
-9. We suggest creating an empty git repository and linking it to this project. This will be useful for deploying later.
-    - Configure git from your Looker project to the new repository.
-    - https://docs.looker.com/data-modeling/getting-started/setting-up-git-connection
-    - #### Alternatively: You can configure a bare repository.
+9. Connect your new project to Git. You can do this multiple ways:
+    - Create a new repository on GitHub or a similar service, and follow the instructions to [connect your project to Git](https://docs.looker.com/data-modeling/getting-started/setting-up-git-connection)
+    - A simpler but less powerful approach is to set up git with the "Bare" repository option which does not require connecting to an external Git Service.
 
-10. Commit and deploy your `model` and `manifest` to production.
-11. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list. (default: `Extension Template`)
-    - Live reloading is not supported
-    - BUT! While in `Developer Mode`, if you are using `url`, you can reload the page to see any changes you make to the underlying extension code.
+10. Commit your changes and deploy your them to production through the Project UI.
+11. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list.
+    - The extension will load the JavaScript from the `url` you provided in the `application` definition/
+    - Reloading the extension page will bring in any new code changes from the extension template. (Webpack's hot reloading is not currently supported.)
 
+## Deployment
 
+The process above requires your local development server to be running to load the extension code. To allow other people to use the extension, we can build the JavaScript file and include it in the project directly.
 
-## More information
- - code splitting is currently NOT supported
+1. In your extension project directory on your development machione you can build the extension with `yarn build`.
+2. Drag and drop the generated `dist/bundle.js` file into the Looker project interface
+3. Modify your `manifest.lkml` to use `file` instead of `url`:
+    ```
+    application: my-great-extension {
+      label: "My Great Extension"
+      file: "bundle.js"
+    }
+    ```
+## Notes
 
+- Webpack's hot reloading is not currently supported.
+- Webpack's module splitting is not currently supported.
 
-### Alternative development strategy
-1. In your terminal you can build the extension with `yarn.build`.
-2. Drag and drop the generated `bundle.js` file into your project via Looker
-3. In your `manifest.lkml`, instead of `url`, use `file`.
-```
-application: extension-template {
-  label: "Extension Template"
-  file: "bundle.js"
-}
-```
+## Related Projects
+
+- [Looker extension template for React](https://github.com/looker-open-source/extension-template-react)
+- [Looker extension SDK for React](https://www.npmjs.com/package/@looker/extension-sdk-react)
+- [Looker SDK](https://www.npmjs.com/package/@looker/sdk)
