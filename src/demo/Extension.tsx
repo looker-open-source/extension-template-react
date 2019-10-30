@@ -41,6 +41,7 @@ interface ExtensionState {
 
 class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionState> {
   static contextType = ExtensionContext
+  context!: React.ContextType<typeof ExtensionContext>
 
   constructor(props: RouteComponentProps) {
     super(props)
@@ -72,7 +73,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   // TEMPLATE CODE FOR RUNNING ANY QUERY
   async runQuery() {
       try {
-      var result = await this.context.coreSDK.ok(
+      const result = await this.context.coreSDK.ok(
         this.context.coreSDK.run_inline_query({
           result_format: "json_detail",
           limit: 10,
@@ -118,7 +119,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     this.setState({ currentLook: look, runningQuery: true, errorMessage: undefined })
 
     try {
-      var result = await this.context.coreSDK.ok(
+      const result = await this.context.coreSDK.ok(
         this.context.coreSDK.run_look({ look_id: look_id, result_format: "json" })
       )
       this.setState({
