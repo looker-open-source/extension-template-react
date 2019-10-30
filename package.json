@@ -10,6 +10,9 @@
   },
   "author": "Looker",
   "license": "MIT",
+  "engines": {
+    "node": ">=10"
+  },
   "dependencies": {
     "@looker/extension-sdk": "^0.1.6",
     "@looker/extension-sdk-react": "^0.1.1",
