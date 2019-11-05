@@ -25,6 +25,7 @@
 import React from "react"
 import { LookList } from "./LookList"
 import { QueryContainer } from "./QueryContainer"
+import { Banner, Card, CardContent, Heading } from '@looker/components'
 import { ExtensionContext } from "@looker/extension-sdk-react"
 import { ILook } from "@looker/sdk"
 import { Switch, Route, RouteComponentProps, withRouter } from "react-router-dom"
@@ -165,22 +166,29 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     return (
       <>
         {this.state.errorMessage && (
-          <div style={{ backgroundColor: "red", color: "white", height: "20px" }}>{this.state.errorMessage}</div>
+          <Banner intent="error">{this.state.errorMessage}</Banner>
         )}
-        <LookList
-          loading={this.state.loadingLooks}
-          looks={this.state.looks}
-          selectLook={(look: ILook) => this.onLookSelected(look)}
-        />
-        <Switch>
-          <Route path='/:id'>
-            <QueryContainer
-              look={this.state.currentLook}
-              results={this.state.queryResult}
-              running={this.state.runningQuery}
+        <Card raised>
+          <CardContent>
+            <Heading fontWeight="semiBold" textTransform="capitalize">
+              Welcome to the Looker Extension Template
+            </Heading>
+            <LookList
+              loading={this.state.loadingLooks}
+              looks={this.state.looks}
+              selectLook={(look: ILook) => this.onLookSelected(look)}
             />
-          </Route>
-        </Switch>
+            <Switch>
+              <Route path='/:id'>
+                <QueryContainer
+                  look={this.state.currentLook}
+                  results={this.state.queryResult}
+                  running={this.state.runningQuery}
+                />
+              </Route>
+            </Switch>
+          </CardContent>
+        </Card>
       </>
     )
   }
