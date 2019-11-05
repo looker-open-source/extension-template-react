@@ -25,6 +25,7 @@
 import React from "react"
 import { LookList } from "./LookList"
 import { QueryContainer } from "./QueryContainer"
+import { Banner, Heading } from '@looker/components'
 import { ExtensionContext } from "@looker/extension-sdk-react"
 import { ILook } from "@looker/sdk"
 import { Switch, Route, RouteComponentProps, withRouter } from "react-router-dom"
@@ -165,8 +166,11 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     return (
       <>
         {this.state.errorMessage && (
-          <div style={{ backgroundColor: "red", color: "white", height: "20px" }}>{this.state.errorMessage}</div>
+          <Banner intent="error">{this.state.errorMessage}</Banner>
         )}
+        <Heading fontWeight="semiBold" textTransform="capitalize">
+          Welcome to the Looker Extension Template
+        </Heading>
         <LookList
           loading={this.state.loadingLooks}
           looks={this.state.looks}
