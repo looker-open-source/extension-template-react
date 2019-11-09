@@ -1,6 +1,6 @@
 # Looker Extension Template (React & TypeScript)
 
-This repository serves as a template for creating a new Looker Extension. 
+This repository serves as a template for creating a new Looker Extension.
 
 It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/) for writing your extension, the [React Extension SDK](https://github.com/looker-open-source/extension-sdk-react) for interacting with Looker, and [Webpack](https://webpack.js.org/) for building your code.
 
@@ -13,43 +13,45 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
     ```
     yarn install
     ```
-    
+
     > You may need to update your Node version or use a [Node version manager](https://github.com/nvm-sh/nvm) to change your Node version.
 4.  Start the development server
     ```
     yarn start
     ```
 
-    Great! Your extension is now running and serving the JavaScript at https://localhost:8080/bundle.js.
+    Great! Your extension is now running and serving the JavaScript at http://localhost:8080/bundle.js.
 
-    > __Important:__ Visiting the bundle URL you are running there may be a certificate warning. The development server runs with a self-signed SSL certificate, so you will need to accept this to allow your browser to connect to it.
+    > __Note well:__ The webpack development server also supports https. To use, add the parameter --https to the start command
+    `"start": "webpack-dev-server --https --no-inline --no-hot"`
+    Should you decide to use https, you should visit the bundle URL you are running as there will likely be a certificate warning. The development server runs with a self-signed SSL certificate, so you will need to accept this to allow your browser to connect to it.
 
 5. Now log in to Looker and create a new project.
 
    This is found under __Develop__ => __Manage LookML Projects__ => __New LookML Project__.
-   
+
    You'll want to select "Blank Project" as your "Starting Point". You'll now have a new project with no files.
-6. In your copy of the extension tablet you have `manifest.lkml` file. 
+6. In your copy of the extension tablet you have `manifest.lkml` file.
 
     You can either drag & upload this file into your Looker project, or create a `manifest.lkml` with the same content. Change the `id`, `label`, or `url` as needed.
 
     ```
     application: my-great-extension {
       label: "My Great Extension"
-      url: "https://localhost:8080/bundle.js"
+      url: "http://localhost:8080/bundle.js"
     }
     ```
 
-8. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
+7. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
     - Add a connection in this model. It can be any connection, it doesn't matter which.
-    - [Configure the model you created](https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model) so that it has access to some connection. 
-  
-9. Connect your new project to Git. You can do this multiple ways:
+    - [Configure the model you created](https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model) so that it has access to some connection.
+
+8. Connect your new project to Git. You can do this multiple ways:
     - Create a new repository on GitHub or a similar service, and follow the instructions to [connect your project to Git](https://docs.looker.com/data-modeling/getting-started/setting-up-git-connection)
     - A simpler but less powerful approach is to set up git with the "Bare" repository option which does not require connecting to an external Git Service.
 
-10. Commit your changes and deploy your them to production through the Project UI.
-11. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list.
+9.  Commit your changes and deploy your them to production through the Project UI.
+10. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list.
     - The extension will load the JavaScript from the `url` you provided in the `application` definition/
     - Reloading the extension page will bring in any new code changes from the extension template. (Webpack's hot reloading is not currently supported.)
 
