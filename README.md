@@ -72,9 +72,12 @@ The process above requires your local development server to be running to load t
 
 - Webpack's hot reloading is not currently supported.
 - Webpack's module splitting is not currently supported.
+- The template uses Looker's component library and styled components. Neither of these libraries are required so you may remove and replace them with a component library of your own choice,
 
 ## Related Projects
 
 - [Looker extension template for React](https://github.com/looker-open-source/extension-template-react)
 - [Looker extension SDK for React](https://www.npmjs.com/package/@looker/extension-sdk-react)
 - [Looker SDK](https://www.npmjs.com/package/@looker/sdk)
+- [Looker Components](https://components.looker.com/)
+- [Styled components](https://www.styled-components.com/docs)
