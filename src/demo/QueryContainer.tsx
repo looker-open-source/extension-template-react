@@ -24,17 +24,15 @@
 
 import React from "react"
 import { ILook } from "@looker/sdk"
-import {
-  Heading,
-  Box,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  Text,
-  TableDataCell,
-  TableBody
-} from "@looker/components"
+import { TableDataCell } from "@looker/components/dist/Table/TableCell/TableDataCell"
+import { Heading } from "@looker/components/dist/Text/Heading"
+import { Text } from "@looker/components/dist/Text/Text"
+import { Box } from "@looker/components/dist/Layout/Box"
+import { TableHead } from "@looker/components/dist/Table/TableSection/TableHead"
+import { TableBody } from "@looker/components/dist/Table/TableSection/TableBody"
+import { Table } from "@looker/components/dist/Table"
+import { TableRow } from "@looker/components/dist/Table/TableRow/TableRow"
+import { TableHeaderCell } from "@looker/components/dist/Table/TableCell/TableHeaderCell"
 
 export interface QueryProps {
   look?: ILook
