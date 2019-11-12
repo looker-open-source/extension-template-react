@@ -1,0 +1,44 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": ["node_modules/**/*", "lib/helltool/assets/**/*.module.scss.d.ts"]
+  },
+  "jsRules": {},
+  "rules": {
+    "arrow-return-shorthand": [true, "multiline"],
+    "no-namespace": [true, "allow-declarations"],
+    "prefer-const": [true, { "destructuring": "all" }],
+    "promise-function-async": true,
+    "one-variable-per-declaration": false,
+    "await-promise": [true, "IPromise"],
+    "no-inferred-empty-object-type": true,
+    "strict-type-predicates": true,
+    "return-undefined": true,
+    "member-access": [true, "no-public"],
+    "object-literal-sort-keys": false,
+    "interface-name": false,
+    "only-arrow-functions": false,
+    "no-var-requires": false,
+    "no-console": [true, "log"],
+    "max-line-length": false,
+    "forin": false,
+    "max-classes-per-file": false,
+    "no-empty-interface": false,
+    "no-unnecessary-type-assertion": false,
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }
+    ],
+    "jsx-boolean-value": false,
+    "jsx-no-multiline-js": false,
+    "no-use-before-declare": false
+  },
+  "rulesDirectory": []
+}

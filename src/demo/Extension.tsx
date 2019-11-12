@@ -22,16 +22,16 @@
  * THE SOFTWARE.
  */
 
-import React from "react"
-import { LookList } from "./LookList"
-import { QueryContainer } from "./QueryContainer"
-import { Banner } from "@looker/components/dist/Banner"
-import { Box } from "@looker/components/dist/Layout/Box"
-import { Heading } from "@looker/components/dist/Text/Heading"
-import { Flex } from "@looker/components/dist/Layout/Flex"
-import { ExtensionContext } from "@looker/extension-sdk-react"
-import { ILook } from "@looker/sdk"
-import { Switch, Route, RouteComponentProps, withRouter } from "react-router-dom"
+import React from 'react'
+import { LookList } from './LookList'
+import { QueryContainer } from './QueryContainer'
+import { Banner } from '@looker/components/dist/Banner'
+import { Box } from '@looker/components/dist/Layout/Box'
+import { Heading } from '@looker/components/dist/Text/Heading'
+import { Flex } from '@looker/components/dist/Layout/Flex'
+import { ExtensionContext } from '@looker/extension-sdk-react'
+import { ILook } from '@looker/sdk'
+import { Switch, Route, RouteComponentProps, withRouter } from 'react-router-dom'
 
 interface ExtensionState {
   looks: ILook[]
@@ -65,9 +65,9 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
 
   async initialize() {
     await this.loadLooks()
-    const path: string[] = this.props.location.pathname.split("/")
+    const path: string[] = this.props.location.pathname.split('/')
     if (path.length > 1) {
-      const id: number = parseInt(this.props.location.pathname.split("/")[1], 10)
+      const id: number = parseInt(this.props.location.pathname.split('/')[1], 10)
       this.setState({ selectedLookId: id })
       this.runLook(id)
     }
@@ -110,21 +110,21 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     if (look === undefined) {
       this.setState({
         currentLook: undefined,
-        errorMessage: "Unable to load Look.",
-        queryResult: "",
+        errorMessage: 'Unable to load Look.',
+        queryResult: '',
         runningQuery: false
       })
       return
     }
 
     // Set Page title
-    this.context.extensionSDK.updateTitle(`Look: ${look.title || "unknown"}`)
+    this.context.extensionSDK.updateTitle(`Look: ${look.title || 'unknown'}`)
 
     this.setState({ currentLook: look, runningQuery: true, errorMessage: undefined })
 
     try {
       const result = await this.context.coreSDK.ok(
-        this.context.coreSDK.run_look({ look_id: look_id, result_format: "json" })
+        this.context.coreSDK.run_look({ look_id: look_id, result_format: 'json' })
       )
       this.setState({
         queryResult: result,
@@ -132,9 +132,9 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
       })
     } catch (error) {
       this.setState({
-        queryResult: "",
+        queryResult: '',
         runningQuery: false,
-        errorMessage: "Unable to run look"
+        errorMessage: 'Unable to run look'
       })
     }
   }
@@ -142,7 +142,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   async loadLooks() {
     this.setState({ loadingLooks: true, errorMessage: undefined })
     try {
-      var result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
+      const result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
       this.setState({
         // Take up to the first 10 looks
         looks: result.slice(0, 9),
@@ -152,13 +152,13 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
       this.setState({
         looks: [],
         loadingLooks: false,
-        errorMessage: "Error loading looks"
+        errorMessage: 'Error loading looks'
       })
     }
   }
 
   onLookSelected(look: ILook) {
-    this.props.history.push("/" + look.id)
+    this.props.history.push('/' + look.id)
     if (look.id !== this.state.selectedLookId) {
       this.setState({ selectedLookId: look.id })
       this.runLook(look.id!)
