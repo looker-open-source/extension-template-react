@@ -24,6 +24,15 @@
 
 import React from "react"
 import { ILook } from "@looker/sdk"
+import { TableDataCell } from "@looker/components/dist/Table/TableCell/TableDataCell"
+import { Heading } from "@looker/components/dist/Text/Heading"
+import { Text } from "@looker/components/dist/Text/Text"
+import { Box } from "@looker/components/dist/Layout/Box"
+import { TableHead } from "@looker/components/dist/Table/TableSection/TableHead"
+import { TableBody } from "@looker/components/dist/Table/TableSection/TableBody"
+import { Table } from "@looker/components/dist/Table"
+import { TableRow } from "@looker/components/dist/Table/TableRow/TableRow"
+import { TableHeaderCell } from "@looker/components/dist/Table/TableCell/TableHeaderCell"
 
 export interface QueryProps {
   look?: ILook
@@ -31,16 +40,48 @@ export interface QueryProps {
   running: boolean
 }
 
-export const QueryContainer: React.FC<QueryProps> = (props) => (
-  <div style={{ float: "left", width: "70vw", height: "auto", margin: "10 0 0 10" }}>
-    <h4>
+const headings = (results?: any): Array<String> => {
+  if (!results || !results.length || results.length === 0) {
+    return []
+  }
+  return Object.keys(results[0]).map((key) => key)
+}
+
+const values = (results?: any): string[][] => {
+  if (!results || !results.length || results.length === 0) {
+    return []
+  }
+  return results.map((result: string) => Object.keys(result).map((key) => `${(result as any)[key]}`))
+}
+
+export const QueryContainer: React.FC<QueryProps> = ({ look, results, running }) => (
+  <Box m='small' width='100%'>
+    <Heading as='h3' mb='small'>
       Query:
-      {props.look ? " " + props.look.title : ""}
-    </h4>
-    <textarea
-      style={{ width: "90%", height: "80vh" }}
-      value={props.running ? "Running Query ..." : props.results ? props.results : ""}
-      readOnly
-    />
-  </div>
+      {look ? " " + look.title : ""}
+    </Heading>
+    {running && <Text mr='large'>Running Query ...</Text>}
+    {!running && (
+      <Table>
+        <TableHead>
+          <TableRow>
+            {headings(results).map((heading, index) => (
+              <TableHeaderCell key={index}>{heading}</TableHeaderCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {values(results)
+            .filter((row) => row.find((column) => column !== ""))
+            .map((row, rowIndex) => (
+              <TableRow key={rowIndex}>
+                {row.map((column, columnIndex) => (
+                  <TableDataCell key={`${rowIndex}-${columnIndex}`}>{column}</TableDataCell>
+                ))}
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    )}
+  </Box>
 )

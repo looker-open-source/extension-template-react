@@ -25,7 +25,10 @@
 import React from "react"
 import { LookList } from "./LookList"
 import { QueryContainer } from "./QueryContainer"
-import { Banner, Card, CardContent, Heading } from '@looker/components'
+import { Banner } from "@looker/components/dist/Banner"
+import { Box } from "@looker/components/dist/Layout/Box"
+import { Heading } from "@looker/components/dist/Text/Heading"
+import { Flex } from "@looker/components/dist/Layout/Flex"
 import { ExtensionContext } from "@looker/extension-sdk-react"
 import { ILook } from "@looker/sdk"
 import { Switch, Route, RouteComponentProps, withRouter } from "react-router-dom"
@@ -34,7 +37,7 @@ interface ExtensionState {
   looks: ILook[]
   currentLook?: ILook
   selectedLookId?: number
-  queryResult?: string
+  queryResult?: any
   runningQuery: boolean
   loadingLooks: boolean
   errorMessage?: string
@@ -124,7 +127,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
         this.context.coreSDK.run_look({ look_id: look_id, result_format: "json" })
       )
       this.setState({
-        queryResult: JSON.stringify(result, undefined, 2),
+        queryResult: result,
         runningQuery: false
       })
     } catch (error) {
@@ -165,14 +168,10 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   render() {
     return (
       <>
-        {this.state.errorMessage && (
-          <Banner intent="error">{this.state.errorMessage}</Banner>
-        )}
-        <Card raised>
-          <CardContent>
-            <Heading fontWeight="semiBold" textTransform="capitalize">
-              Welcome to the Looker Extension Template
-            </Heading>
+        {this.state.errorMessage && <Banner intent='error'>{this.state.errorMessage}</Banner>}
+        <Box m='large'>
+          <Heading fontWeight='semiBold'>Welcome to the Looker Extension Template</Heading>
+          <Flex width='100%'>
             <LookList
               loading={this.state.loadingLooks}
               looks={this.state.looks}
@@ -187,8 +186,8 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
                 />
               </Route>
             </Switch>
-          </CardContent>
-        </Card>
+          </Flex>
+        </Box>
       </>
     )
   }

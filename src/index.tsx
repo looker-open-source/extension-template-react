@@ -26,8 +26,9 @@ import * as React from "react"
 import * as ReactDOM from "react-dom"
 import { Extension } from "./demo/Extension"
 import { ExtensionProvider } from "@looker/extension-sdk-react"
-import { theme } from '@looker/components'
-import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from "@looker/components/dist/utils/GlobalStyle"
+import { theme } from "@looker/design-tokens/dist/theme"
+import { ThemeProvider } from "styled-components"
 
 window.addEventListener("DOMContentLoaded", async (event) => {
   var root = document.createElement("div")
@@ -37,7 +38,10 @@ window.addEventListener("DOMContentLoaded", async (event) => {
     // ExtensionProvider provides subcomponents access to the Looker Extension SDK
     <ExtensionProvider>
       <ThemeProvider theme={theme}>
-        <Extension />
+        <>
+          <GlobalStyle />
+          <Extension />
+        </>
       </ThemeProvider>
     </ExtensionProvider>,
     root

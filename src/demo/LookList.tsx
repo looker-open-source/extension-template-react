@@ -24,7 +24,12 @@
 
 import React from "react"
 import { ILook } from "@looker/sdk"
-import { ListItem } from "./ListItem"
+import { List } from "@looker/components/dist/List"
+import { Heading } from "@looker/components/dist/Text/Heading"
+import { Box } from "@looker/components/dist/Layout/Box"
+import { ListItem } from "@looker/components/dist/List/ListItem"
+import { Link } from "@looker/components/dist/Link"
+import { Text } from "@looker/components/dist/Text/Text"
 
 interface LookListProps {
   looks: ILook[]
@@ -33,21 +38,28 @@ interface LookListProps {
 }
 
 export const LookList: React.FC<LookListProps> = (props) => (
-  <div style={{ width: "auto", float: "left", margin: 10 }}>
-    <h3>Look List</h3>
-
+  <Box m='small' width={200}>
+    <Heading as='h3' mb='small'>
+      Looks
+    </Heading>
     {props.loading ? (
-      <h4 style={{ marginRight: 30 }}>Loading...</h4>
+      <Text mr='large'>Loading...</Text>
     ) : (
-      <ul style={{ padding: 10 }}>
-        {props.looks.map((look) => {
-          return look.id !== undefined ? (
-            <ListItem key={look.id} id={look.id!} label={look.title!} callback={() => props.selectLook(look)} />
+      <List>
+        {props.looks.map((look) =>
+          look.id !== undefined ? (
+            <ListItem key={look.id}>
+              <Link onClick={() => props.selectLook(look)} key={look.id}>
+                {look.title!}
+              </Link>
+            </ListItem>
           ) : (
-            <h4 key='error'>Failed to load</h4>
+            <Text key='error' color='palette.red500'>
+              Failed to load
+            </Text>
           )
-        })}
-      </ul>
+        )}
+      </List>
     )}
-  </div>
+  </Box>
 )
