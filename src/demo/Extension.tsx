@@ -22,19 +22,19 @@
  * THE SOFTWARE.
  */
 
-import React from "react"
-import { LookList } from "./LookList"
-import { QueryContainer } from "./QueryContainer"
-import { Banner } from "@looker/components/dist/Banner"
-import { Box } from "@looker/components/dist/Layout/Box"
-import { Heading } from "@looker/components/dist/Text/Heading"
-import { Flex } from "@looker/components/dist/Layout/Flex"
-import { ExtensionContext } from "@looker/extension-sdk-react"
-import { ILook } from "@looker/sdk"
-import { Switch, Route, RouteComponentProps, withRouter } from "react-router-dom"
+import React from 'react'
+import { LookList } from './LookList'
+import { QueryContainer } from './QueryContainer'
+import { Banner } from '@looker/components/dist/Banner'
+import { Box } from '@looker/components/dist/Layout/Box'
+import { Heading } from '@looker/components/dist/Text/Heading'
+import { Flex } from '@looker/components/dist/Layout/Flex'
+import { ExtensionContext } from '@looker/extension-sdk-react'
+import { ILook } from '@looker/sdk'
+import { Switch, Route, RouteComponentProps, withRouter, MemoryRouter } from 'react-router-dom'
 
 interface ExtensionState {
-  looks: ILook[]
+  looks?: ILook[]
   currentLook?: ILook
   selectedLookId?: number
   queryResult?: any
@@ -50,26 +50,47 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   constructor(props: RouteComponentProps) {
     super(props)
     this.state = {
-      looks: [],
+      looks: undefined,
       selectedLookId: undefined,
       currentLook: undefined,
       queryResult: undefined,
       runningQuery: false,
-      loadingLooks: true
+      loadingLooks: false
     }
   }
 
   componentDidMount() {
-    this.initialize()
+    const { initializeError } = this.context
+    if (initializeError) {
+      return
+    }
+    const { location } = this.props
+    const path: string[] = location.pathname.split('/')
+    if (path.length > 1 && path[1] !== '') {
+      const id: number = parseInt(path[1], 10)
+      if (!isNaN(id)) {
+        this.setState({ selectedLookId: id })
+      }
+    }
+    this.loadLooks()
   }
 
-  async initialize() {
-    await this.loadLooks()
-    const path: string[] = this.props.location.pathname.split("/")
-    if (path.length > 1) {
-      const id: number = parseInt(this.props.location.pathname.split("/")[1], 10)
-      this.setState({ selectedLookId: id })
-      this.runLook(id)
+  componentDidUpdate() {
+    const { initializeError } = this.context
+    if (initializeError) {
+      return
+    }
+    const { looks, selectedLookId, currentLook, runningQuery } = this.state
+    if (looks) {
+      if (!selectedLookId) {
+        if (looks.length > 0) {
+          this.onLookSelected(looks[0])
+        }
+      } else {
+        if (!runningQuery && !currentLook) {
+          this.runLook(selectedLookId)
+        }
+      }
     }
   }
 
@@ -105,26 +126,27 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   */
 
   async runLook(look_id: number) {
-    const look = this.state.looks.find((l) => l.id == look_id)
+    const look = (this.state.looks || []).find((l) => l.id == look_id)
     // If no matching Look then return
     if (look === undefined) {
       this.setState({
+        selectedLookId: undefined,
         currentLook: undefined,
-        errorMessage: "Unable to load Look.",
-        queryResult: "",
+        errorMessage: 'Unable to load Look.',
+        queryResult: '',
         runningQuery: false
       })
       return
     }
 
     // Set Page title
-    this.context.extensionSDK.updateTitle(`Look: ${look.title || "unknown"}`)
+    this.context.extensionSDK.updateTitle(`Look: ${look.title || 'unknown'}`)
 
     this.setState({ currentLook: look, runningQuery: true, errorMessage: undefined })
 
     try {
       const result = await this.context.coreSDK.ok(
-        this.context.coreSDK.run_look({ look_id: look_id, result_format: "json" })
+        this.context.coreSDK.run_look({ look_id: look_id, result_format: 'json' })
       )
       this.setState({
         queryResult: result,
@@ -132,9 +154,9 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
       })
     } catch (error) {
       this.setState({
-        queryResult: "",
+        queryResult: '',
         runningQuery: false,
-        errorMessage: "Unable to run look"
+        errorMessage: 'Unable to run look'
       })
     }
   }
@@ -142,7 +164,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   async loadLooks() {
     this.setState({ loadingLooks: true, errorMessage: undefined })
     try {
-      var result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
+      const result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
       this.setState({
         // Take up to the first 10 looks
         looks: result.slice(0, 9),
@@ -152,13 +174,13 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
       this.setState({
         looks: [],
         loadingLooks: false,
-        errorMessage: "Error loading looks"
+        errorMessage: 'Error loading looks'
       })
     }
   }
 
   onLookSelected(look: ILook) {
-    this.props.history.push("/" + look.id)
+    this.props.history.push('/' + look.id)
     if (look.id !== this.state.selectedLookId) {
       this.setState({ selectedLookId: look.id })
       this.runLook(look.id!)
@@ -166,6 +188,9 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 
   render() {
+    if (this.context.initializeError) {
+      return <Banner intent='error'>{this.context.initializeError}</Banner>
+    }
     return (
       <>
         {this.state.errorMessage && <Banner intent='error'>{this.state.errorMessage}</Banner>}
@@ -174,7 +199,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
           <Flex width='100%'>
             <LookList
               loading={this.state.loadingLooks}
-              looks={this.state.looks}
+              looks={this.state.looks || []}
               selectLook={(look: ILook) => this.onLookSelected(look)}
             />
             <Switch>
