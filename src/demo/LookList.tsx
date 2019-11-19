@@ -23,13 +23,8 @@
  */
 
 import React from 'react'
-import { ILook } from '@looker/sdk'
-import { List } from '@looker/components/dist/List'
-import { Heading } from '@looker/components/dist/Text/Heading'
-import { Box } from '@looker/components/dist/Layout/Box'
-import { ListItem } from '@looker/components/dist/List/ListItem'
-import { Link } from '@looker/components/dist/Link'
-import { Text } from '@looker/components/dist/Text/Text'
+import {ILook} from '@looker/sdk'
+import {List, Heading, Box, ListItem, Link, Text} from '@looker/components'
 
 interface LookListProps {
   looks: ILook[]

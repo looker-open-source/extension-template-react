@@ -23,15 +23,12 @@
  */
 
 import React from 'react'
-import { LookList } from './LookList'
-import { QueryContainer } from './QueryContainer'
-import { Banner } from '@looker/components/dist/Banner'
-import { Box } from '@looker/components/dist/Layout/Box'
-import { Heading } from '@looker/components/dist/Text/Heading'
-import { Flex } from '@looker/components/dist/Layout/Flex'
-import { ExtensionContext } from '@looker/extension-sdk-react'
-import { ILook } from '@looker/sdk'
-import { Switch, Route, RouteComponentProps, withRouter, MemoryRouter } from 'react-router-dom'
+import {LookList} from './LookList'
+import {QueryContainer} from './QueryContainer'
+import {Banner, Box, Heading, Flex} from '@looker/components'
+import {ExtensionContext} from '@looker/extension-sdk-react'
+import {ILook} from '@looker/sdk'
+import {Switch, Route, RouteComponentProps, withRouter, MemoryRouter} from 'react-router-dom'
 
 interface ExtensionState {
   looks?: ILook[]
@@ -60,27 +57,27 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 
   componentDidMount() {
-    const { initializeError } = this.context
+    const {initializeError} = this.context
     if (initializeError) {
       return
     }
-    const { location } = this.props
+    const {location} = this.props
     const path: string[] = location.pathname.split('/')
     if (path.length > 1 && path[1] !== '') {
       const id: number = parseInt(path[1], 10)
       if (!isNaN(id)) {
-        this.setState({ selectedLookId: id })
+        this.setState({selectedLookId: id})
       }
     }
     this.loadLooks()
   }
 
   componentDidUpdate() {
-    const { initializeError } = this.context
+    const {initializeError} = this.context
     if (initializeError) {
       return
     }
-    const { looks, selectedLookId, currentLook, runningQuery } = this.state
+    const {looks, selectedLookId, currentLook, runningQuery} = this.state
     if (looks) {
       if (!selectedLookId) {
         if (looks.length > 0) {
@@ -142,11 +139,11 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     // Set Page title
     this.context.extensionSDK.updateTitle(`Look: ${look.title || 'unknown'}`)
 
-    this.setState({ currentLook: look, runningQuery: true, errorMessage: undefined })
+    this.setState({currentLook: look, runningQuery: true, errorMessage: undefined})
 
     try {
       const result = await this.context.coreSDK.ok(
-        this.context.coreSDK.run_look({ look_id: look_id, result_format: 'json' })
+        this.context.coreSDK.run_look({look_id: look_id, result_format: 'json'})
       )
       this.setState({
         queryResult: result,
@@ -162,7 +159,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 
   async loadLooks() {
-    this.setState({ loadingLooks: true, errorMessage: undefined })
+    this.setState({loadingLooks: true, errorMessage: undefined})
     try {
       const result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
       this.setState({
@@ -182,7 +179,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   onLookSelected(look: ILook) {
     this.props.history.push('/' + look.id)
     if (look.id !== this.state.selectedLookId) {
-      this.setState({ selectedLookId: look.id })
+      this.setState({selectedLookId: look.id})
       this.runLook(look.id!)
     }
   }
