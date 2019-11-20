@@ -22,17 +22,19 @@
  * THE SOFTWARE.
  */
 
-import React from "react"
-import { ILook } from "@looker/sdk"
-import { TableDataCell } from "@looker/components/dist/Table/TableCell/TableDataCell"
-import { Heading } from "@looker/components/dist/Text/Heading"
-import { Text } from "@looker/components/dist/Text/Text"
-import { Box } from "@looker/components/dist/Layout/Box"
-import { TableHead } from "@looker/components/dist/Table/TableSection/TableHead"
-import { TableBody } from "@looker/components/dist/Table/TableSection/TableBody"
-import { Table } from "@looker/components/dist/Table"
-import { TableRow } from "@looker/components/dist/Table/TableRow/TableRow"
-import { TableHeaderCell } from "@looker/components/dist/Table/TableCell/TableHeaderCell"
+import React from 'react'
+import {ILook} from '@looker/sdk'
+import {
+  TableDataCell,
+  Heading,
+  Text,
+  Box,
+  TableHead,
+  TableBody,
+  Table,
+  TableRow,
+  TableHeaderCell
+} from '@looker/components'
 
 export interface QueryProps {
   look?: ILook
@@ -54,11 +56,11 @@ const values = (results?: any): string[][] => {
   return results.map((result: string) => Object.keys(result).map((key) => `${(result as any)[key]}`))
 }
 
-export const QueryContainer: React.FC<QueryProps> = ({ look, results, running }) => (
+export const QueryContainer: React.FC<QueryProps> = ({look, results, running}) => (
   <Box m='small' width='100%'>
     <Heading as='h3' mb='small'>
       Query:
-      {look ? " " + look.title : ""}
+      {look ? ' ' + look.title : ''}
     </Heading>
     {running && <Text mr='large'>Running Query ...</Text>}
     {!running && (
@@ -72,7 +74,7 @@ export const QueryContainer: React.FC<QueryProps> = ({ look, results, running })
         </TableHead>
         <TableBody>
           {values(results)
-            .filter((row) => row.find((column) => column !== ""))
+            .filter((row) => row.find((column) => column !== ''))
             .map((row, rowIndex) => (
               <TableRow key={rowIndex}>
                 {row.map((column, columnIndex) => (
