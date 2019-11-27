@@ -7,7 +7,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
 ## Getting Started for Development
 
 1. Clone or download a copy of this template to your development machine
-2. Navigate (`cd`) to the remplate directory on your system
+2. Navigate (`cd`) to the template directory on your system
 3. Install the dependencies with [Yarn](https://yarnpkg.com/).
 
     ```
@@ -59,7 +59,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
 
 The process above requires your local development server to be running to load the extension code. To allow other people to use the extension, we can build the JavaScript file and include it in the project directly.
 
-1. In your extension project directory on your development machione you can build the extension with `yarn build`.
+1. In your extension project directory on your development machine you can build the extension with `yarn build`.
 2. Drag and drop the generated `dist/bundle.js` file into the Looker project interface
 3. Modify your `manifest.lkml` to use `file` instead of `url`:
     ```
