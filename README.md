@@ -43,7 +43,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
     ```
 
 7. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
-    - Add a [connection parameter](https://docs.looker.com/r/develop/connection-in-explore) to this model. It can be any connection, it doesn't matter which.
+    - Add a [connection parameter](https://docs.looker.com/r/lookml/types/model/connection) to this model. It can be any connection, it doesn't matter which.
     - [Configure the model you created](https://docs.looker.com/r/develop/configure-model) so that it has access to some connection.
 
 8. Connect your new project to Git. You can do this multiple ways:
