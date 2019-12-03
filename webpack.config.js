@@ -1,21 +1,39 @@
 const path = require("path")
 
+const PATHS = {
+  app: path.join(__dirname, 'src/index.tsx'),
+}
+
 module.exports = {
-  entry: "./src/index.tsx",
+  devServer: {
+    index: 'index.html',
+  },
+  entry: {
+    app: PATHS.app,
+  },
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle.js',
+    publicPath: "https://localhost:8080/"
+  },
+  mode: 'development',
   module: {
     rules: [
       {
+        loader: 'babel-loader',
         test: /\.tsx?$/,
-        use: "ts-loader",
-        exclude: /node_modules/
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"]
+    extensions: ['.tsx', '.ts', '.js'],
   },
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist")
-  }
+  devServer: {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    }
+  },
+  devtool: 'inline-source-map'
 }
