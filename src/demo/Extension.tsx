@@ -29,6 +29,7 @@ import {Banner, Box, Heading, Flex} from '@looker/components'
 import {ExtensionContext} from '@looker/extension-sdk-react'
 import {ILook} from '@looker/sdk'
 import {Switch, Route, RouteComponentProps, withRouter, MemoryRouter} from 'react-router-dom'
+import { hot } from "react-hot-loader/root"
 
 interface ExtensionState {
   looks?: ILook[]
@@ -215,4 +216,4 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 }
 
-export const Extension = withRouter(ExtensionInternal)
+export const Extension = hot(withRouter(ExtensionInternal))

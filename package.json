@@ -5,7 +5,7 @@
   "main": "dist/bundle.js",
   "scripts": {
     "start": "webpack-dev-server --no-inline --no-hot",
-    "start-hot": "webpack-dev-server --https --hot --disable-host-check",
+    "start-hot": "webpack-dev-server --hot --disable-host-check",
     "build": "tsc --noEmit && webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -30,6 +30,7 @@
     "lodash": "^4.17.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-hot-loader": "^4.12.18",
     "react-router-dom": "^5.1.2",
     "styled-components": "^4.4.1",
     "styled-system": "^5.1.2",

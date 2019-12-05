@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js',
-    publicPath: "https://localhost:8080/"
+    publicPath: "http://localhost:8080/"
   },
   mode: 'development',
   module: {
