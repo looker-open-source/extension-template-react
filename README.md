@@ -4,6 +4,8 @@ This repository serves as a template for creating a new Looker Extension.
 
 It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/) for writing your extension, the [React Extension SDK](https://github.com/looker-open-source/extension-sdk-react) for interacting with Looker, and [Webpack](https://webpack.js.org/) for building your code.
 
+__Important:__ In general the template targets Looker version 7 and above. Should you wish to build an extension for Looker 6.24, please use branch `looker-6.24-extension-sdk-0.3.2`.
+
 ## Getting Started for Development
 
 1. Clone or download a copy of this template to your development machine
