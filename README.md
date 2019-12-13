@@ -23,8 +23,12 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
     Great! Your extension is now running and serving the JavaScript at http://localhost:8080/bundle.js.
 
     > __Note well:__ The webpack development server also supports https. To use, add the parameter --https to the start command
-    `"start": "webpack-dev-server --https --no-inline --no-hot"`
+    `"start": "webpack-dev-server --hot --disable-host-check --https"`
     Should you decide to use https, you should visit the bundle URL you are running as there will likely be a certificate warning. The development server runs with a self-signed SSL certificate, so you will need to accept this to allow your browser to connect to it.
+
+    The default yarn start command runs with hot module replacement working. Some changes will cause a full reload of the extension iframe. When this happens the extension framework connection will break. You should see an error. You will need to do a full page reload of the outer page.
+
+    To run without hot module replacement run `yarn start-no-hot`
 
 5. Now log in to Looker and create a new project.
 
@@ -59,7 +63,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
 
 The process above requires your local development server to be running to load the extension code. To allow other people to use the extension, we can build the JavaScript file and include it in the project directly.
 
-1. In your extension project directory on your development machione you can build the extension with `yarn build`.
+1. In your extension project directory on your development machine you can build the extension with `yarn build`.
 2. Drag and drop the generated `dist/bundle.js` file into the Looker project interface
 3. Modify your `manifest.lkml` to use `file` instead of `url`:
     ```
