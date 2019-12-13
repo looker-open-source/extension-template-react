@@ -15,7 +15,7 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@looker/components": "^0.7.0",
+    "@looker/components": "0.7.2",
     "@looker/extension-sdk": "^0.2.3",
     "@looker/extension-sdk-react": "^0.2.2",
     "@looker/sdk": "^0.2.0-beta.26",

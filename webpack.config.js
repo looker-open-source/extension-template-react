@@ -5,10 +5,7 @@ const PATHS = {
 }
 
 module.exports = {
-  devServer: {
-    index: 'index.html',
-  },
-  entry: {
+  entry: {  
     app: PATHS.app,
   },
   output: {
@@ -20,15 +17,23 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(js|jsx|tsx)$/,
         loader: 'babel-loader',
-        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        include: /src/
       },
+      {
+        test: /\.jsx?$/,
+        use: 'react-hot-loader/webpack',
+        include: /node_modules/,
+      }
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   devServer: {
+    index: 'index.html',
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
