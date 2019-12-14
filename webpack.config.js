@@ -5,7 +5,7 @@ const PATHS = {
 }
 
 module.exports = {
-  entry: {  
+  entry: {
     app: PATHS.app,
   },
   output: {
@@ -17,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|tsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         include: /src/
