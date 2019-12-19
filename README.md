@@ -4,8 +4,6 @@ This repository serves as a template for creating a new Looker Extension.
 
 It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlang.org/) for writing your extension, the [React Extension SDK](https://github.com/looker-open-source/extension-sdk-react) for interacting with Looker, and [Webpack](https://webpack.js.org/) for building your code.
 
-__Important:__ In general the template targets Looker version 7 and above. Should you wish to build an extension for Looker 6.24, please use branch `looker-6.24-extension-sdk-0.3.2`.
-
 ## Getting Started for Development
 
 1. Clone or download a copy of this template to your development machine
@@ -76,13 +74,14 @@ The process above requires your local development server to be running to load t
     ```
 ## Notes
 
-- Webpack's hot reloading is not currently supported.
 - Webpack's module splitting is not currently supported.
 - The template uses Looker's component library and styled components. Neither of these libraries are required so you may remove and replace them with a component library of your own choice,
 
 ## Related Projects
 
-- [Looker extension template for React](https://github.com/looker-open-source/extension-template-react)
+- [Looker React extension template](https://github.com/looker-open-source/extension-template-react)
+- [Looker React/Redux extension template ](https://github.com/looker-open-source/extension-template-redux)
+- [Looker kitchensink extension template ](https://github.com/looker-open-source/extension-template-kitchensink)
 - [Looker extension SDK for React](https://www.npmjs.com/package/@looker/extension-sdk-react)
 - [Looker SDK](https://www.npmjs.com/package/@looker/sdk)
 - [Looker Components](https://components.looker.com/)
