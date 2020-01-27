@@ -120,7 +120,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
         errorMessage: "Unable to run query"
       })
     }
-
+  }
   */
 
   async runLook(look_id: number) {
