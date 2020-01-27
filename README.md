@@ -7,7 +7,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
 ## Getting Started for Development
 
 1. Clone or download a copy of this template to your development machine
-2. Navigate (`cd`) to the remplate directory on your system
+2. Navigate (`cd`) to the template directory on your system
 3. Install the dependencies with [Yarn](https://yarnpkg.com/).
 
     ```
@@ -47,14 +47,14 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
     ```
 
 7. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
-    - Add a connection in this model. It can be any connection, it doesn't matter which.
-    - [Configure the model you created](https://docs.looker.com/data-modeling/getting-started/create-projects#configuring_a_model) so that it has access to some connection.
+    - Add a [connection parameter](https://docs.looker.com/r/lookml/types/model/connection) to this model. It can be any connection, it doesn't matter which.
+    - [Configure the model you created](https://docs.looker.com/r/develop/configure-model) so that it has access to some connection.
 
 8. Connect your new project to Git. You can do this multiple ways:
-    - Create a new repository on GitHub or a similar service, and follow the instructions to [connect your project to Git](https://docs.looker.com/data-modeling/getting-started/setting-up-git-connection)
-    - A simpler but less powerful approach is to set up git with the "Bare" repository option which does not require connecting to an external Git Service.
+    - Create a new repository on GitHub or a similar service, and follow the instructions to [connect your project to Git](https://docs.looker.com//r/api/pull-request)
+    - A simpler but less powerful approach is to set up git with the ["Bare" repository](https://docs.looker.com/r/develop/bare-git-repo) option which does not require connecting to an external Git Service.
 
-9.  Commit your changes and deploy your them to production through the Project UI.
+9.  [Commit your changes](https://docs.looker.com/r/develop/commit-changes) and [deploy your them to production](https://docs.looker.com/r/develop/deploy-changes) through the Projects page UI.
 10. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list.
     - The extension will load the JavaScript from the `url` you provided in the `application` definition/
     - Reloading the extension page will bring in any new code changes from the extension template. (Webpack's hot reloading is not currently supported.)
