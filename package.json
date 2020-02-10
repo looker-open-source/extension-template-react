@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --disable-host-check",
+    "start": "webpack-dev-server --hot --disable-host-check --port 8084",
     "start-no-hot": "webpack-dev-server --no-inline --no-hot",
     "build": "tsc --noEmit && webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@looker/components": "0.7.2",
-    "@looker/extension-sdk": "^0.3.4",
+    "@looker/extension-sdk": "^0.3.6",
     "@looker/extension-sdk-react": "^0.3.0",
     "@looker/sdk": "^0.2.0-beta.26",
     "@types/node": "^12.7.5",
