@@ -1,11 +1,11 @@
 {
   "name": "extension-template",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --disable-host-check --port 8084",
-    "start-no-hot": "webpack-dev-server --no-inline --no-hot",
+    "start": "webpack-dev-server --hot --disable-host-check --port 8080",
+    "start-no-hot": "webpack-dev-server --no-inline --no-hot --port 8080",
     "build": "tsc --noEmit && webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@looker/components": "0.7.18",
-    "@looker/extension-sdk": "^0.3.8",
-    "@looker/extension-sdk-react": "^0.3.1",
-    "@looker/sdk": "^0.2.0-beta.31",
+    "@looker/extension-sdk": "^0.4.0",
+    "@looker/extension-sdk-react": "^0.4.0",
+    "@looker/sdk": "^0.2.0-beta.32",
     "@types/node": "^12.7.5",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.3",

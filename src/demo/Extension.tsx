@@ -96,8 +96,8 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   // TEMPLATE CODE FOR RUNNING ANY QUERY
   async runQuery() {
       try {
-      const result = await this.context.coreSDK.ok(
-        this.context.coreSDK.run_inline_query({
+      const result = await this.context.core40SDK.ok(
+        this.context.core40SDK.run_inline_query({
           result_format: "json_detail",
           limit: 10,
           body: {
@@ -143,8 +143,8 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     this.setState({currentLook: look, runningQuery: true, errorMessage: undefined})
 
     try {
-      const result = await this.context.coreSDK.ok(
-        this.context.coreSDK.run_look({look_id: look_id, result_format: 'json'})
+      const result = await this.context.core40SDK.ok(
+        this.context.core40SDK.run_look({look_id: look_id, result_format: 'json'})
       )
       this.setState({
         queryResult: result,
@@ -162,7 +162,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   async loadLooks() {
     this.setState({loadingLooks: true, errorMessage: undefined})
     try {
-      const result = await this.context.coreSDK.ok(this.context.coreSDK.all_looks())
+      const result = await this.context.core40SDK.ok(this.context.core40SDK.all_looks())
       this.setState({
         // Take up to the first 10 looks
         looks: result.slice(0, 9),
