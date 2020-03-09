@@ -1,6 +1,6 @@
 {
   "name": "extension-template",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@looker/components": "0.7.18",
-    "@looker/extension-sdk": "^0.4.0",
+    "@looker/extension-sdk": "^0.4.1",
     "@looker/extension-sdk-react": "^0.4.0",
     "@looker/sdk": "^0.2.0-beta.32",
     "@types/node": "^12.7.5",
