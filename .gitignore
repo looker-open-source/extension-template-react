@@ -3,4 +3,3 @@ dist
 !dist/index.js
 .cache
 .vscode
-yarn.lock
