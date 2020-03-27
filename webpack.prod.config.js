@@ -22,47 +22,32 @@
  * THE SOFTWARE.
  */
 
-module.exports = api => {
-  api.cache(true)
+const path = require("path")
 
-  return {
-    presets: [
-      [
-        '@babel/env',
-        {
-          targets: {
-            browsers: 'Last 2 Chrome versions, Firefox ESR',
-            node: '8.9',
-          },
-        },
-      ],
-      [
-        '@babel/preset-react',
-        {
-          development: process.env.BABEL_ENV !== 'build',
-        },
-      ],
-      '@babel/preset-typescript',
-    ],
-    env: {
-      build: {
-        ignore: [
-          '**/*.d.ts',
-          '**/*.test.js',
-          '**/*.test.jsx',
-          '**/*.test.ts',
-          '**/*.test.tsx',
-          '__snapshots__',
-          '__tests__',
-        ],
+const PATHS = {
+  app: path.join(__dirname, 'src/index.tsx'),
+}
+
+module.exports = {
+  entry: {
+    app: PATHS.app,
+  },
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle.js',
+  },
+  mode: 'production',
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx|ts|tsx)$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        include: /src/
       },
-    },
-    ignore: ['node_modules'],
-    plugins: [
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-object-rest-spread',
-      '@babel/plugin-transform-runtime',
-      'babel-plugin-styled-components',
     ],
-  }
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
 }

@@ -1,12 +1,12 @@
 {
   "name": "extension-template",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "",
   "main": "dist/bundle.js",
   "scripts": {
     "start": "webpack-dev-server --hot --disable-host-check --port 8080",
     "start-no-hot": "webpack-dev-server --no-inline --no-hot --port 8080",
-    "build": "tsc --noEmit && webpack --mode=production",
+    "build": "export BABEL_ENV=build && tsc --noEmit && webpack --mode=production --config webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Looker",
