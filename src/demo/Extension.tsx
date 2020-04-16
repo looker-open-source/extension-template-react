@@ -70,6 +70,16 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     if (initializeError) {
       return
     }
+    // Changes to the browser history drives the running of looks.
+    // The look id is part of the URL. Any change to the URL causes
+    // componentDidUpdate to run.
+    // The look id is extracted from the URL. If it is not present
+    // or is not a valid number, the look id of the first loaded
+    // looks is updated in the URL. This is a replace rather than a
+    // push to reduce the number of actions that do nothing when the
+    // browser back button is pressed. Adding the look id the URL
+    // causes componentDidUpdate to run again. When it runs again
+    // the look is present and valid. At that point the look is run.
     const {looks, runningQuery, selectedLookId} = this.state
     if (looks && looks.length > 0 && !runningQuery) {
       const {location} = this.props
@@ -175,7 +185,12 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 
   onLookSelected(look: ILook) {
-    this.props.history.push('/' + look.id)
+    const { currentLook } = this.state
+    if (!currentLook || currentLook.id !== look.id) {
+      // Update the look id in the URL. This will trigger componentWillUpdate
+      // which will run the look.
+      this.props.history.push('/' + look.id)
+    }
   }
 
   render() {
