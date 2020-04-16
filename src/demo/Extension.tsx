@@ -77,7 +77,7 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     // or is not a valid number, the look id of the first loaded
     // looks is updated in the URL. This is a replace rather than a
     // push to reduce the number of actions that do nothing when the
-    // browser back button is pressed. Adding the look id the URL
+    // browser back button is pressed. Adding the look id to the URL
     // causes componentDidUpdate to run again. When it runs again
     // the look is present and valid. At that point the look is run.
     const {looks, runningQuery, selectedLookId} = this.state
