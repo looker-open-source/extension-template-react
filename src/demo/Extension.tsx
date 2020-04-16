@@ -62,14 +62,6 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     if (initializeError) {
       return
     }
-    const {location} = this.props
-    const path: string[] = location.pathname.split('/')
-    if (path.length > 1 && path[1] !== '') {
-      const id: number = parseInt(path[1], 10)
-      if (!isNaN(id)) {
-        this.setState({selectedLookId: id})
-      }
-    }
     this.loadLooks()
   }
 
@@ -78,15 +70,20 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
     if (initializeError) {
       return
     }
-    const {looks, selectedLookId, currentLook, runningQuery} = this.state
-    if (looks) {
-      if (!selectedLookId) {
-        if (looks.length > 0) {
-          this.onLookSelected(looks[0])
-        }
+    const {looks, runningQuery, selectedLookId} = this.state
+    if (looks && looks.length > 0 && !runningQuery) {
+      const {location} = this.props
+      const path: string[] = location.pathname.split('/')
+      let id: number | undefined
+      if (path.length > 1 && path[1] !== '') {
+        id = parseInt(path[1], 10)
+      }
+      if (!id || isNaN(id)) {
+        this.props.history.replace('/' + looks[0].id)
       } else {
-        if (!runningQuery && !currentLook) {
-          this.runLook(selectedLookId)
+        if (id !== selectedLookId) {
+          this.setState({selectedLookId: id})
+          this.runLook(id)
         }
       }
     }
@@ -179,10 +176,6 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
 
   onLookSelected(look: ILook) {
     this.props.history.push('/' + look.id)
-    if (look.id !== this.state.selectedLookId) {
-      this.setState({selectedLookId: look.id})
-      this.runLook(look.id!)
-    }
   }
 
   render() {

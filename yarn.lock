@@ -902,17 +902,17 @@
     polished "^3.4.4"
     styled-system "^5.1.4"
 
-"@looker/extension-sdk-react@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@looker/extension-sdk-react/-/extension-sdk-react-0.4.0.tgz#301454680f67d44a8cca6025959eae9c9b98277c"
-  integrity sha512-PooYMiPbM7Nk0yfFBThdaMMR8ey3eeHODZKB65zEXAD9UE/XP6WZkP7dYuMcSpvVQFP/c5eIF1M6rer3DmC6FA==
+"@looker/extension-sdk-react@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@looker/extension-sdk-react/-/extension-sdk-react-0.5.0.tgz#5e3a8c990e532047b224cc461891fc0c4b9e092f"
+  integrity sha512-4xdRsC5S7uhYnuovcZ3AwZc0k7s9OEuGyI/LmHotRfSiNQcvDQZzK94mOwT/on/gUjd6US+RUpKUhBEVeiAPWw==
   dependencies:
     ts-loader "^6.1.2"
 
-"@looker/extension-sdk@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@looker/extension-sdk/-/extension-sdk-0.5.1.tgz#850df39c424d41ab671468b06e836bb60f688a44"
-  integrity sha512-pAP7rBBGY4Twy5TJUfYoq6KEugYb7wp40cZww+Qlx7iMuzfXvpl5GMeGpRMfKQBllFjR+Rhyj4I2yygqek4mCg==
+"@looker/extension-sdk@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@looker/extension-sdk/-/extension-sdk-0.6.0.tgz#990bd4a2834a5637f9a6f2f2800b1e41c34151a3"
+  integrity sha512-tiMgu4tskZGM3QKdIk9kJsZkMbRWLE5YA2/DfIFZVdnIdjOYJjUUDTGJym58p40C+PNT44TvKQr9grlrImsD/w==
   dependencies:
     "@looker/chatty" "^2.2.0"
     "@looker/sdk" "^0.2.0-beta.32"
