@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
   ReactDOM.render(
     // ExtensionProvider provides subcomponents access to the Looker Extension SDK
-    <ExtensionProvider loadingComponent={loading} requiredLookerVersion='>=6.24.0'>
+    <ExtensionProvider loadingComponent={loading} requiredLookerVersion='>=7.0.0'>
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyle />
