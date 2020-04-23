@@ -902,10 +902,10 @@
     polished "^3.4.4"
     styled-system "^5.1.4"
 
-"@looker/extension-sdk-react@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@looker/extension-sdk-react/-/extension-sdk-react-0.5.0.tgz#5e3a8c990e532047b224cc461891fc0c4b9e092f"
-  integrity sha512-4xdRsC5S7uhYnuovcZ3AwZc0k7s9OEuGyI/LmHotRfSiNQcvDQZzK94mOwT/on/gUjd6US+RUpKUhBEVeiAPWw==
+"@looker/extension-sdk-react@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@looker/extension-sdk-react/-/extension-sdk-react-0.5.1.tgz#e8b314b0ea91eaff5f57364ddd62bfdb7a3f28ff"
+  integrity sha512-H0jJNyjV9inAFV2CEvju6r8EJg4EIbEqludtvN1cHteVzLKfiuR6okOfxnV2I/L/x34jRs4QxALmS1l9rG6trw==
   dependencies:
     ts-loader "^6.1.2"
 
