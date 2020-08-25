@@ -25,7 +25,7 @@
 import React from 'react'
 import {LookList} from './LookList'
 import {QueryContainer} from './QueryContainer'
-import {Banner, Box, Heading, Flex} from '@looker/components'
+import {MessageBar, Box, Heading, Flex} from '@looker/components'
 import {ExtensionContext} from '@looker/extension-sdk-react'
 import {ILook} from '@looker/sdk'
 import {Switch, Route, RouteComponentProps, withRouter, MemoryRouter} from 'react-router-dom'
@@ -194,12 +194,9 @@ class ExtensionInternal extends React.Component<RouteComponentProps, ExtensionSt
   }
 
   render() {
-    if (this.context.initializeError) {
-      return <Banner intent='error'>{this.context.initializeError}</Banner>
-    }
     return (
       <>
-        {this.state.errorMessage && <Banner intent='error'>{this.state.errorMessage}</Banner>}
+        {this.state.errorMessage && <MessageBar intent='critical'>{this.state.errorMessage}</MessageBar>}
         <Box m='large'>
           <Heading fontWeight='semiBold'>Welcome to the Looker Extension Template</Heading>
           <Flex width='100%'>
