@@ -59,10 +59,10 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
     }
    ```
 
-7. Create a `model` LookML file in your project. The name doesn't matter. The model and connection won't be used, and in the future this step may be eliminated.
+7. Create a `model` LookML file in your project. The name doesn't matter although the convention is to use the name of the extension. The model and connection are used to secure access to the extension.
 
-   - Add a [connection parameter](https://docs.looker.com/r/lookml/types/model/connection) to this model. It can be any connection, it doesn't matter which.
-   - [Configure the model you created](https://docs.looker.com/r/develop/configure-model) so that it has access to some connection.
+   - Add a [connection parameter](https://docs.looker.com/r/lookml/types/model/connection) to this model.
+   - [Configure the model you created](https://docs.looker.com/r/develop/configure-model) so that it has access to the connection.
 
 8. Connect your new project to Git. You can do this multiple ways:
 
@@ -72,7 +72,7 @@ It uses [React](https://reactjs.org/) and [TypeScript](https://www.typescriptlan
 9. [Commit your changes](https://docs.looker.com/r/develop/commit-changes) and [deploy your them to production](https://docs.looker.com/r/develop/deploy-changes) through the Projects page UI.
 10. Reload the page and click the `Browse` dropdown menu. You should see your extension in the list.
     - The extension will load the JavaScript from the `url` you provided in the `application` definition/
-    - Reloading the extension page will bring in any new code changes from the extension template. (Webpack's hot reloading is not currently supported.)
+    - Reloading the extension page will bring in any new code changes from the extension template.
 
 ## Deployment
 
@@ -100,7 +100,6 @@ The process above requires your local development server to be running to load t
 
 ## Notes
 
-- Webpack's module splitting is not currently supported.
 - The template uses Looker's component library and styled components. Neither of these libraries are required so you may remove and replace them with a component library of your own choice,
 
 ## Related Projects
