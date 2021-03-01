@@ -1,3 +1,6 @@
+# This repository is archived
+The [extension-examples](https://github.com/looker-open-source/extension-examples) repository is the new home of Looker's Extension examples.
+
 # Looker Extension Template (React & TypeScript)
 
 This repository serves as a template for creating a new Looker Extension.
